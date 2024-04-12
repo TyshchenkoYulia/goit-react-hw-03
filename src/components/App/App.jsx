@@ -21,7 +21,7 @@ export default function App() {
 
   return (
     <div className={css.container}>
-      <h1>Phonebook</h1>
+      <h1 className={css.title}>Phonebook</h1>
       <ContactForm />
       <SearchBox value={search} onFilter={setSearch} />
       <ContactList contacts={visibleContacts} onDelete={deleteContact} />
