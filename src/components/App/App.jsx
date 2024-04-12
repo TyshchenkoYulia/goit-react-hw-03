@@ -1,17 +1,30 @@
-// import { useState } from 'react'
-
+import { useState } from "react";
+import contactCard from "../../contacts.json";
 import ContactForm from "../ContactForm/ContactForm";
 import SearchBox from "../SearchBox/SearchBox";
 import ContactList from "../ContactList/ContactList";
 import "./App.css";
 
 export default function App() {
+  const [contacts, setContacts] = useState(contactCard);
+  const [search, setSearch] = useState("");
+
+  const visibleContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const deleteContact = (contactId) => {
+    setContacts((previewContact) => {
+      return previewContact.filter((contact) => contact.id !== contactId);
+    });
+  };
+
   return (
     <div>
       <h1>Phonebook</h1>
       <ContactForm />
-      <SearchBox />
-      <ContactList />
+      <SearchBox value={search} onFilter={setSearch} />
+      <ContactList contacts={visibleContacts} onDelete={deleteContact} />
     </div>
   );
 }
