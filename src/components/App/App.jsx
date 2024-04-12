@@ -3,7 +3,7 @@ import contactCard from "../../contacts.json";
 import ContactForm from "../ContactForm/ContactForm";
 import SearchBox from "../SearchBox/SearchBox";
 import ContactList from "../ContactList/ContactList";
-import "./App.css";
+import css from "./App.module.css";
 
 export default function App() {
   const [contacts, setContacts] = useState(contactCard);
@@ -20,7 +20,7 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className={css.container}>
       <h1>Phonebook</h1>
       <ContactForm />
       <SearchBox value={search} onFilter={setSearch} />

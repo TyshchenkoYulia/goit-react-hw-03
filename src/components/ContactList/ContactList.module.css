@@ -1,0 +1,17 @@
+.item {
+  border: 3px solid black;
+  border-radius: 20px;
+  margin: 10px auto;
+  list-style: none;
+  padding: 10px;
+  width: 360px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
