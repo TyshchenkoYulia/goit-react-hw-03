@@ -1,7 +1,6 @@
 import css from "./ContactForm.module.css";
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-// import { nanoid } from "nanoid";
 
 export default function ContactForm({ values, onAddUser, validation }) {
   const userName = useId();
@@ -29,7 +28,7 @@ export default function ContactForm({ values, onAddUser, validation }) {
           component="span"
         />
 
-        <label className={css.text} htmlFor="userTelNumber">
+        <label className={css.text} htmlFor={userTelNumber}>
           Number
         </label>
         <Field className={css.field} name="telNumber" id={userTelNumber} />

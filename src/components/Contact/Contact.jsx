@@ -2,7 +2,10 @@ import css from "./Contact.module.css";
 import { FaUser } from "react-icons/fa";
 import { BsTelephoneFill } from "react-icons/bs";
 
-export default function Contact({ contact: { id, name, number }, onDelete }) {
+export default function Contact({
+  contact: { id, name, telNumber },
+  onDelete,
+}) {
   return (
     <div className={css.container}>
       <div className={css.wrapper}>
@@ -12,7 +15,7 @@ export default function Contact({ contact: { id, name, number }, onDelete }) {
         </p>
         <p className={css.telNumber}>
           <BsTelephoneFill className={css.icon} />
-          {number}
+          {telNumber}
         </p>
       </div>
 
