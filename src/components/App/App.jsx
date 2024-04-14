@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import * as Yup from "yup";
 import contactCard from "../../contacts.json";
@@ -20,6 +20,10 @@ export default function App() {
 
   const [search, setSearch] = useState("");
 
+  useEffect(() => {
+    window.localStorage.setItem("saved-contact", JSON.stringify(contacts));
+  }, [contacts]);
+
   const visibleContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -29,23 +33,21 @@ export default function App() {
       .min(3, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
-    number: Yup.number()
-      .typeError("That doesn't look like a phone number")
-      .positive("A phone number can't start with a minus")
-      .integer("A phone number can't include a decimal point")
-      .min(7)
-      .required("A phone number is required"),
+    telNumber: Yup.string()
+      .min(7, "Too Short!")
+      .max(10, "Too Long!")
+      .required("Required"),
   });
 
   const initialValues = {
-    id: nanoid(),
+    // id: nanoid(),
     name: "",
     telNumber: "",
   };
 
   const addUser = (newUser) => {
     setContacts((previewContact) => {
-      return [...previewContact, newUser];
+      return [...previewContact, { ...newUser, id: nanoid() }];
     });
   };
 
